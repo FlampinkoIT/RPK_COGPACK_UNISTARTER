@@ -1,23 +1,29 @@
 @ECHO Off
 COLOR 0D
+
 ::::::::::::::::::::::::::::::::::::
 ::                                ::
-:: COGPACK Universal Starter v1.5 ::
-::        27.07.2021 13:15        ::
+:: COGPACK Universal Starter v1.6 ::
+::        13.07.2021 12:35        ::
 ::       Coded by Prinzessin      ::
 ::     prinzessin@flampinko.it    ::
 ::                                ::
 ::::::::::::::::::::::::::::::::::::
+
 CLS
+
 @ECHO COGPACK wird gestartet...
+
 if not exist "U:\CP.exe" (
 	NET USE U: \\Server-hal\cogpack_9.45
 )>NUL
+
 CD /D U:\
 if not exist "U:\%COMPUTERNAME%" (
 	md "U:\%COMPUTERNAME%"
 	xcopy "U:\PC_VORLAGEN\*" "U:\%COMPUTERNAME%" /S /E /I /Q /R /Y>NUL
 )
+
 if exist "U:\%COMPUTERNAME%\CVOR" (
 	@ECHO -1,-1,3740,1,1,9207,6911,32,1,6141>"U:\%COMPUTERNAME%\CVOR"
 	@ECHO      1.0000>>"U:\%COMPUTERNAME%\CVOR"
@@ -62,6 +68,7 @@ if exist "U:\%COMPUTERNAME%\CVOR" (
 	@ECHO u:\>>"U:\%COMPUTERNAME%\CVOR"
 	@ECHO 0,0,0,255,255,255,255,128,0,Lucida Console>>"U:\%COMPUTERNAME%\CVOR"
 )
+
 copy "U:\%COMPUTERNAME%\CVOR" "U:\%COMPUTERNAME%\CVOR.OK">NUL
 
 FOR /F %%A in (U:\ii\netpaths) do IF "%%A" == "%COMPUTERNAME%" GOTO :FERTIG
